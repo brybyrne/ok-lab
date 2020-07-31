@@ -1,0 +1,26 @@
+<config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <router>
+            <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
+                <id>{{asn}}</id>
+                <address-family>
+                    <no-vrf>
+                        <ipv4>
+                            <af-name>unicast</af-name>
+                            <ipv4-unicast>
+                                {% for p in prefix -%}
+                                <network>
+                                    <with-mask>
+                                        <number>{{ p.prefix }}</number>
+                                        <mask>{{ p.mask }}</mask>
+                                    </with-mask>
+                                </network>
+                                {% endfor -%}
+                            </ipv4-unicast>
+                        </ipv4>
+                    </no-vrf>
+                </address-family>
+            </bgp>
+        </router>
+    </native>
+</config>

@@ -1,0 +1,6 @@
+
+#### Generating Reverse Telnet Hosts Names ####
+
+{% for h in hosts -%}
+no ip host {{ h.name }} {{ h.port }} 10.255.255.255
+{% endfor -%}

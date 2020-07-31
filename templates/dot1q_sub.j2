@@ -1,0 +1,31 @@
+<config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <interface>
+        {% for p in ports -%}
+        <{{ p.type }}>
+        <name>{{ p.id }}.{{ p.vlan }}</name>
+        <description>{{ p.desc }}</description>
+        <encapsulation>
+            <dot1Q>
+                <vlan-id>{{ p.vlan }}</vlan-id>
+            </dot1Q>
+        </encapsulation>
+        <ip>
+            <address>
+                <primary>
+                    <address>{{ p.ip_addr }}</address>
+                    <mask>{{ p.mask }}</mask>
+                </primary>
+            </address>
+            {% if p.helper == "True" -%}
+            <helper-address>
+                <address>{{ p.helper_ip }}</address>
+            </helper-address>
+            {% else -%}
+            {% endif -%}
+        </ip>
+    </{{ p.type }}>
+    {% endfor -%}
+        </interface>
+    </native>
+</config>

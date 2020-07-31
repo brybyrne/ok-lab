@@ -1,0 +1,28 @@
+---
+host:
+    - name: "s1-r1"
+      port: 2003
+    - name: "s2-r1"
+      port: 2004
+    - name: "s3-r1"
+      port: 2005
+    - name: "s3-r2"
+      port: 2006
+    - name: "s1-a1"
+      port: 2007
+    - name: "s2-a1"
+      port: 2008
+    - name: "dmz"
+      port: 2009
+    - name: "wan"
+      port: 2010
+    - name: "s3-d1"
+      port: 2011
+    - name: "s3-d2"
+      port: 2012
+    - name: "s3-a1"
+      port: 2013
+    - name: "s3-a1-2"
+      port: 2014
+    - name: "s3-a2"
+      port: 2015

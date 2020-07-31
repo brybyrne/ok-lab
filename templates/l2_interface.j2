@@ -1,0 +1,19 @@
+<config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+    <interface>
+        {% for l2p in l2_ports -%}
+        <{{ l2p.type }}>
+        <name>{{ l2p.id }}</name>
+        <description>{{ l2p.desc }}</description>
+        <switchport>
+            <access xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                <vlan>
+                    <vlan>{{ l2p.access_vlan }}</vlan>
+                </vlan>
+            </access>
+        </switchport>
+        </{{ l2p.type }}>
+        {% endfor -%}
+    </interface>
+    </native>
+</config>

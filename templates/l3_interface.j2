@@ -1,0 +1,20 @@
+<config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+    <interface>
+        {% for l3p in l3_ports -%}
+        <{{ l3p.type }}>
+            <name>{{ l3p.id }}</name>
+            <description>{{ l3p.desc }}</description>
+                <ip>
+                    <address>
+                    <primary>
+                        <address>{{ l3p.addr }}</address>
+                        <mask>{{ l3p.mask }}</mask>
+                    </primary>
+                    </address>
+                </ip>
+        </{{ l3p.type }}>
+        {% endfor -%}
+    </interface>
+    </native>
+</config>

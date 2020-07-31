@@ -1,0 +1,41 @@
+---
+host:
+  - ip: "10.15.255.1"
+    username: "localadmin"
+    password: "C1sco,123"
+    port: 830
+    vlans:
+    - id: 252
+      name: "SHARED_DHCP"
+    l2_interface:
+      - type: "GigabitEthernet"
+        id: "1/0/3"
+        access_vlan: 252
+        desc: "SITE 1 RTR"
+      - type: "GigabitEthernet"
+        id: "1/0/4"
+        access_vlan: 252
+        desc: "SITE 2 RTR"
+      - type: "GigabitEthernet"
+        id: "1/0/5"
+        access_vlan: 252
+        desc: "SITE 3 RTR 1"
+      - type: "GigabitEthernet"
+        id: "1/0/6"
+        access_vlan: 252
+        desc: "SITE 3 RTR 2"                
+    l3_interface:
+      - type: "Vlan"
+        id: 252
+        addr: "10.15.252.129"
+        mask: "255.255.255.128"
+        desc: "WAN Shared P2P DHCP Scope"
+    dhcp:
+      - name: "WAN_SHARED_P2P_POOL"
+        network: "10.15.252.128"
+        mask: "/25"
+        dns: "172.16.0.9"
+        def_rtr: "10.15.252.129"
+        excludes: host
+        exclude_low: "10.15.252.129"
+        exclude_high: 

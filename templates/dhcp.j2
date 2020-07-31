@@ -1,0 +1,39 @@
+<config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+    <ip>
+        <dhcp>
+        <excluded-address xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-dhcp">
+            {% for ex in dhcp -%}
+            {% if ex.excludes == "host" -%}
+            <low-address-list>
+                <low-address>{{ ex.exclude_low }}</low-address>
+            </low-address-list>
+            {% else -%}
+            <low-high-address-list>
+                <low-address>{{ ex.exclude_low }}</low-address>
+                <high-address>{{ ex.exclude_high }}</high-address>
+            </low-high-address-list>
+            {% endif -%}
+            {% endfor -%}
+        </excluded-address>
+        {% for poo in dhcp -%}
+        <pool xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-dhcp">
+            <id>{{ poo.name }}</id>
+            <default-router>
+                <default-router-list>{{ poo.def_rtr }}</default-router-list>
+            </default-router>
+            <dns-server>
+                <dns-server-list>{{ poo.dns }}</dns-server-list>
+            </dns-server>
+            <network>
+            <primary-network>
+                <number>{{ poo.network }}</number>
+                <mask>{{ poo.mask }}</mask>
+            </primary-network>
+            </network>
+        </pool>
+        {% endfor -%}
+        </dhcp>
+    </ip>
+    </native>
+</config>
