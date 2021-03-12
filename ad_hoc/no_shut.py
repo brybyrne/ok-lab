@@ -4,8 +4,8 @@ from netmiko import ConnectHandler
 switch = {
     'device_type': 'cisco_ios',
     'host': '10.15.255.6',
-    'username': 'netman',
-    'password': 'C1sco,123',
+    'username': 'username',
+    'password': 'password',
 }
 
 net_connect = ConnectHandler(**switch)
